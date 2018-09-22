@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">lab03</string>
-    <string name="button_main">Send</string>
     <string name="activity2_name">Second Activity</string>
-    <string name="text_header">Messsage Received</string>
+    <string name="text_header">Message Received</string>
+    <string name="text_header_reply">Reply Received</string>
+    <string name="button_main">Send</string>
+    <string name="editText_main">Enter Your Message Here</string>
+    <string name="button_second">Send</string>
+    <string name="editText_second">Enter Your Message Here</string>
 </resources>
