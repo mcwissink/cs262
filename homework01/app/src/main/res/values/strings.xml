@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">homework01</string>
+    <string name="hint_value1">Value 1:</string>
+    <string name="hint_value2">Value 2:</string>
+    <string name="btn_action">Calculate</string>
+    <string-array name="operators">
+        <item>+</item>
+        <item>-</item>
+        <item>*</item>
+        <item>/</item>
+    </string-array>
+</resources>
