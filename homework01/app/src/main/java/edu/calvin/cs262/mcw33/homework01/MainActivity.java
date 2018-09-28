@@ -2,7 +2,6 @@ package edu.calvin.cs262.mcw33.homework01;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         // An item was selected. You can retrieve the selected item using
         this.operator = parent.getItemAtPosition(pos).toString();
-        Log.d("TAG", this.operator);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
