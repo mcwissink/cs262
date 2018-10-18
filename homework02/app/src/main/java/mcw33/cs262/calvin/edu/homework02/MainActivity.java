@@ -1,5 +1,6 @@
 package mcw33.cs262.calvin.edu.homework02;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -64,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -86,21 +90,25 @@ public class MainActivity extends AppCompatActivity {
         }
         // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("RESPONSE", response.toString());
-                        parseJsonFeed(response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // mTextView.setText("That didn't work!");
-            }
+            new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.d("RESPONSE", response.toString());
+                    parseJsonFeed(response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    displayToast();
+                }
         });
 
         // Add the request to the RequestQueue.
         Volley.newRequestQueue(this).add(jsonObjectRequest);
+    }
+
+    private void displayToast() {
+        Toast.makeText(this, "Couldn't find player", Toast.LENGTH_LONG).show();
     }
 
     private void parseJsonFeed(JSONObject response) {
@@ -117,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < playerArray.length(); i++) {
                 JSONObject playerObj = (JSONObject) playerArray.get(i);
-                String playerName = "no name";  
+                String playerName = "no name";
                 if (playerObj.has("name")) {
                     playerName = playerObj.getString("name");
                 }
