@@ -31,7 +31,7 @@ CREATE TABLE PlayerGame (
 	score integer
 	);
 
--- boardPosition: number between 1 and 40 - 40 spaces in monopoly
+-- boardPosition: number between 1 and 40 -- 40 spaces in monopoly
 CREATE TABLE PlayerState (
         gameID integer REFERENCES Game(ID),
 	playerID integer REFERENCES Player(ID),
@@ -39,9 +39,10 @@ CREATE TABLE PlayerState (
 	boardPosition integer DEFAULT 1 CHECK (boardPosition BETWEEN 1 AND 40)
         );
 
--- property: number between 1 and 28 - 28 properties in monopoly
+-- property: number between 1 and 28 -- 28 properties in monopoly
 -- housing: number between 0 and 5
---		 1 = a house
+-- 	    	 0 = no housing
+--		 1 = 1 house
 --		 ...
 --		 5 = hotel
 CREATE TABLE PropertyState (
