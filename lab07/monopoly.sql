@@ -35,7 +35,7 @@ CREATE TABLE PlayerState (
         gameID integer REFERENCES Game(ID),
 	playerID integer REFERENCES Player(ID),
 	cash integer DEFAULT 0,
-	boardPosition integer DEFAULT 1 CHECK (boardPosition BETWEEN 1 AND 40),
+	boardPosition integer DEFAULT 1 CHECK (boardPosition BETWEEN 1 AND 40)
         );
 
 -- property: number between 1 and 28 - 28 properties in monopoly
@@ -46,7 +46,7 @@ CREATE TABLE PlayerState (
 CREATE TABLE PropertyState (
         gameID integer REFERENCES Game(ID),
 	playerID integer REFERENCES Player(ID),
-	property integer NOT NULL CHECK (property BETWEEN 1 AND 28)
+	property integer NOT NULL CHECK (property BETWEEN 1 AND 28),
 	housing integer DEFAULT 0 CHECK (housing BETWEEN 0 AND 5)
         );
 
@@ -55,7 +55,7 @@ GRANT SELECT ON Game TO PUBLIC;
 GRANT SELECT ON Player TO PUBLIC;
 GRANT SELECT ON PlayerGame TO PUBLIC;
 GRANT SELECT ON PlayerState TO PUBLIC;
-GRANT SELECT ON Property TO PUBLIC;
+GRANT SELECT ON PropertyState TO PUBLIC;
 
 -- Add sample records.
 INSERT INTO Game VALUES (1, '2006-06-27 08:00:00');
