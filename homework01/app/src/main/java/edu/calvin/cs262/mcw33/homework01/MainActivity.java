@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.math.RoundingMode;
 
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText editText1;
     private EditText editText2;
@@ -37,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         this.resultText = findViewById(R.id.result);
     }
 
+    /**
+     * Saves the values of value1 and value2 so that they are remembered if the app
+     * is paused or backgrounded
+     * @param savedInstanceState
+     */
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -45,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         savedInstanceState.putString("value2", this.editText2.getText().toString());
     }
 
+    /**
+     * Restores the values of value1 and value2 that were saved
+     * @param savedInstanceState
+     */
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -61,6 +71,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Do nothing
     }
 
+    /**
+     * Calculates the answer based on the given parameters, value1, value2, and the operation
+     * @param view
+     */
     public void calculateResult(View view) {
         double value1;
         double value2;
@@ -74,11 +88,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         double result = 0;
         switch (this.operator) {
-            case "+": result = value1 + value2; break;
-            case "-": result = value1 - value2; break;
-            case "/": result = value1 / value2; break;
-            case "*": result = value1 * value2; break;
-            default: this.resultText.setText(R.string.calculate_error); break;
+            case "+":
+                result = value1 + value2;
+                break;
+            case "-":
+                result = value1 - value2;
+                break;
+            case "/":
+                result = value1 / value2;
+                break;
+            case "*":
+                result = value1 * value2;
+                break;
+            default:
+                this.resultText.setText(R.string.calculate_error);
+                break;
         }
         DecimalFormat df = new DecimalFormat("#.####");
         df.setRoundingMode(RoundingMode.CEILING);

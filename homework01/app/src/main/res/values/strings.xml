@@ -5,6 +5,8 @@
     <string name="operator_label">Operator:</string>
     <string name="btn_action">Calculate</string>
     <string name="calculate_error">Invalid input</string>
+    <string name="hint_first_number">First number</string>
+    <string name="hint_second_number">Second number</string>
     <string-array name="operators">
         <item>+</item>
         <item>-</item>
