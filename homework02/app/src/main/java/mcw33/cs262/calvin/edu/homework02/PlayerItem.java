@@ -1,8 +1,9 @@
 package mcw33.cs262.calvin.edu.homework02;
 
-public class PlayerItem {
-    private int id;
-    private String name, email;
+class PlayerItem {
+    private final int id;
+    private final String name;
+    private final String email;
 
     public PlayerItem(int id, String name, String email) {
         this.id = id;

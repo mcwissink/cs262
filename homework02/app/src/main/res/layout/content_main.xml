@@ -14,10 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:hint="@string/hint_search"
             android:id="@+id/edit_text_query"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType=""
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor"
+            tools:targetApi="o" />
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"

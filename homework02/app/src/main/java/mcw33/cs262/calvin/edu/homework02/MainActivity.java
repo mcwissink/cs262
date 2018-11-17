@@ -2,26 +2,20 @@ package mcw33.cs262.calvin.edu.homework02;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -29,7 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private EditText mEditText;
@@ -74,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Get the players from the server using Volley for the request queue
+     * @param view
+     */
     public void fetchPlayers(View view) {
         // Use Volley since it is a standard for making web requests
         String url = "https://calvincs262-monopoly.appspot.com/monopoly/v1";
@@ -84,23 +81,23 @@ public class MainActivity extends AppCompatActivity {
             try {
                 // Try to parse the number that has been inputted
                 url += "/player/" + Integer.parseInt(mEditText.getText().toString());
-            } catch(NumberFormatException nfe) {
+            } catch (NumberFormatException nfe) {
                 return;
             }
         }
         // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-            new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.d("RESPONSE", response.toString());
-                    parseJsonFeed(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    displayToast();
-                }
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("RESPONSE", response.toString());
+                        parseJsonFeed(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                displayToast();
+            }
         });
 
         // Add the request to the RequestQueue.
@@ -111,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Couldn't find player", Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Parse the json player array and add the PlayerItems into the adapter
+     * @param response
+     */
     private void parseJsonFeed(JSONObject response) {
         try {
             playerItems.clear();
